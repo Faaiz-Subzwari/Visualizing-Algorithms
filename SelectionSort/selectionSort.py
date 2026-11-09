@@ -1,4 +1,4 @@
-def insertion_sort(numbers):
+def selection_sort(numbers):
     
     for i in range(len(numbers)):
         smallest = numbers[i]
