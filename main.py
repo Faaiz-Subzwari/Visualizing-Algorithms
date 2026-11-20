@@ -1,6 +1,7 @@
 import random
 from BubbleSort.bubbleSort import bubble_sort
 from SelectionSort.selectionSort import selection_sort
+from InsertionSort.insertionSort import insertionSort
 
 def generate_numbers(length):
     numbers = [random.randint(0,100) for x in range(length)]
@@ -17,12 +18,14 @@ def main():
     Config = {
         "Iterations" : 10,
         "Bubble Sort" : True,
-        "Selection Sort" : True
+        "Selection Sort" : True,
+        "Insertion Sort" : True
     }
 
     Validations = {
         "Bubble Sort" : 0,
-        "Selection Sort" : 0
+        "Selection Sort" : 0,
+        "Insertion Sort" : 0
     }
 
     #Validate Bubble Sort
@@ -44,6 +47,16 @@ def main():
             selection_sort(numbers)
             if validate(numbers):
                 Validations["Selection Sort"] += 1
+
+    #Validate Insertion Sort
+    if Config["Insertion Sort"]:
+        for i in range(int(Config["Iterations"])):
+            length = random.randint(100, 1000)
+            print(f'running iteration {i + 1} of Insertion Sort with {length} elements')
+            numbers = generate_numbers(length)
+            insertionSort(numbers)
+            if validate(numbers):
+                Validations["Insertion Sort"] += 1
 
     for key, value in Validations.items():
         print(f'{key} passed {value} out of {Config["Iterations"]} runs')
